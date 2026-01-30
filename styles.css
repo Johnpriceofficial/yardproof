@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,18 +7,19 @@
 }
 
 :root {
-    --primary: #2EA4DD;
-    --secondary: #9DC93B;
-    --dark: #111827;
-    --gray: #6B7280;
-    --light-gray: #F3F4F6;
+    --primary: #0B5D3B;
+    --secondary: #16A34A;
+    --dark: #0F1720;
+    --gray: #334155;
+    --light-gray: #F6F7F9;
     --white: #FFFFFF;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --mist: #E5E7EB;
+    --shadow: 0 8px 18px rgba(15, 23, 32, 0.08);
+    --shadow-lg: 0 20px 40px rgba(15, 23, 32, 0.15);
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--dark);
     background: var(--white);
@@ -31,10 +34,11 @@ body {
 /* Navigation */
 .navbar {
     background: var(--white);
-    box-shadow: var(--shadow);
+    box-shadow: 0 6px 20px rgba(15, 23, 32, 0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .navbar .container {
@@ -63,25 +67,37 @@ body {
 }
 
 .nav-menu a:hover {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #053524 0%, #0B5D3B 60%, #16A34A 100%);
     color: var(--white);
     padding: 80px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
     opacity: 0.95;
 }
@@ -93,6 +109,89 @@ body {
     margin-bottom: 3rem;
 }
 
+.proof-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.proof-pill {
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-card {
+    margin: 0 auto 2.5rem;
+    max-width: 760px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 1.75rem;
+    backdrop-filter: blur(8px);
+    text-align: left;
+}
+
+.form-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.form-card .help-text {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+}
+
+.lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.form-row input,
+.form-row select {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--dark);
+}
+
+.form-row input::placeholder {
+    color: #6B7280;
+}
+
+.form-row-note {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.portal-link {
+    color: #DCFCE7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.portal-link:hover {
+    text-decoration: underline;
+}
+
 .hero-stats {
     display: flex;
     gap: 3rem;
@@ -102,15 +201,20 @@ body {
 .stat {
     display: flex;
     flex-direction: column;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    min-width: 200px;
 }
 
 .stat strong {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 700;
 }
 
 .stat span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.9;
 }
 
@@ -136,10 +240,11 @@ body {
 }
 
 .use-case-card {
-    background: var(--light-gray);
+    background: var(--white);
     padding: 2.5rem;
     border-radius: 12px;
     transition: all 0.3s;
+    border: 1px solid var(--mist);
 }
 
 .use-case-card:hover {
@@ -189,7 +294,7 @@ body {
 /* How It Works Section */
 .how-it-works-section {
     padding: 5rem 0;
-    background: #F9FAFB;
+    background: var(--light-gray);
 }
 
 .steps-grid {
@@ -204,6 +309,8 @@ body {
     padding: 2rem;
     border-radius: 12px;
     text-align: center;
+    border: 1px solid var(--mist);
+    box-shadow: var(--shadow);
 }
 
 .step-number {
@@ -237,7 +344,8 @@ body {
     border-radius: 12px;
     text-align: center;
     margin-top: 3rem;
-    border: 2px solid var(--primary);
+    border: 2px solid rgba(11, 93, 59, 0.2);
+    box-shadow: var(--shadow);
 }
 
 .proof-artifact-preview h3 {
@@ -253,7 +361,7 @@ body {
 }
 
 .artifact-tag {
-    background: #E5F6FD;
+    background: rgba(22, 163, 74, 0.12);
     color: var(--primary);
     padding: 8px 16px;
     border-radius: 20px;
@@ -264,7 +372,7 @@ body {
 /* Demo CTA Section */
 .demo-cta-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #053524, #0B5D3B);
     color: var(--white);
     text-align: center;
 }
@@ -295,7 +403,7 @@ body {
 /* Buttons */
 .btn {
     padding: 12px 28px;
-    border-radius: 8px;
+    border-radius: 999px;
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
@@ -306,12 +414,13 @@ body {
 }
 
 .btn-primary {
-    background: var(--dark);
+    background: var(--primary);
     color: var(--white);
+    box-shadow: 0 8px 20px rgba(11, 93, 59, 0.25);
 }
 
 .btn-primary:hover {
-    background: #1f2937;
+    background: #0F6B43;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -319,10 +428,11 @@ body {
 .btn-secondary {
     background: var(--white);
     color: var(--dark);
+    border: 1px solid var(--mist);
 }
 
 .btn-secondary:hover {
-    background: var(--light-gray);
+    background: #EFF6F0;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -333,7 +443,7 @@ section {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
@@ -342,7 +452,7 @@ section {
 .section-subtitle {
     text-align: center;
     color: var(--gray);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 3rem;
 }
 
@@ -361,6 +471,7 @@ section {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
+    border: 1px solid var(--mist);
 }
 
 .input-card h3 {
@@ -397,6 +508,7 @@ section {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
+    border: 1px solid var(--mist);
 }
 
 .results-area h3 {
@@ -545,7 +657,7 @@ section {
 /* Use Case Pages */
 .use-case-hero {
     padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #053524, #0B5D3B);
     color: white;
     text-align: center;
 }
@@ -613,10 +725,11 @@ section {
 }
 
 .feature-box {
-    background: var(--light-gray);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary);
+    background: var(--white);
+    padding: 1.75rem;
+    border-radius: 16px;
+    border: 1px solid var(--mist);
+    box-shadow: var(--shadow);
 }
 
 .feature-box h3 {
@@ -637,6 +750,7 @@ section {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
+    border: 1px solid var(--mist);
 }
 
 .metric-value {
@@ -677,6 +791,7 @@ section {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
+    border: 1px solid var(--mist);
 }
 
 .sidebar-card h3 {
@@ -697,7 +812,7 @@ section {
 /* Pricing Page */
 .pricing-hero {
     padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #053524, #0B5D3B);
     color: white;
     text-align: center;
 }

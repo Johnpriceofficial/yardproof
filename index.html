@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yardproof - Bounce House Yard Fit Checker</title>
-    <meta name="description" content="See which bounce houses and inflatables fit in your yard instantly. Enter your yard dimensions and get instant recommendations with 3D visualization.">
+    <title>Yard Proof - Stop Guessing. Prove It Fits.</title>
+    <meta name="description" content="Yard Proof turns property uncertainty into a Proof. Embed the widget for instant YES/TIGHT/NO or use public Answers to generate qualified leads with proof attached.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,10 +16,10 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#hero">Home</a></li>
-                <li><a href="#tool">Check Fit</a></li>
-                <li><a href="planner.html">Visual Planner</a></li>
-                <li><a href="#products">Browse</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#answers">Answers</a></li>
+                <li><a href="#lead">Get Quotes</a></li>
+                <li><a href="#business">For Businesses</a></li>
+                <li><a href="portal.html">Business Login</a></li>
             </ul>
         </div>
     </nav>
@@ -29,78 +29,211 @@
         <div class="container">
             <div class="hero-content">
                 <h2 class="hero-title">Stop Guessing. Prove It Fits.</h2>
-                <p class="hero-subtitle">Embed a draw-to-measure proof tool on your website. Customers confirm space, access, and constraints—then book or request a quote.</p>
+                <p class="hero-subtitle">Answer high‑intent questions with a Proof tool. Get fit, power, and pricing clarity — then request quotes from local pros who are ready to act.</p>
                 <div class="hero-cta">
-                    <a href="#demo" class="btn btn-primary">Try Interactive Demo →</a>
-                    <a href="#use-cases" class="btn btn-secondary">View Use Cases</a>
+                    <a href="#lead" class="btn btn-primary">Get My Proof →</a>
+                    <a href="planner.html" class="btn btn-secondary">Try the Demo</a>
+                </div>
+                <div class="proof-strip">
+                    <span class="proof-pill">Proof Artifact</span>
+                    <span class="proof-pill">YES / TIGHT / NO</span>
+                    <span class="proof-pill">Share link + PDF</span>
+                    <span class="proof-pill">Reason codes</span>
+                </div>
+                <div class="form-card">
+                    <h3>Start with your Proof</h3>
+                    <p class="help-text">Free for the public. No contact required to view your result.</p>
+                    <form class="lead-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Property address" aria-label="Property address">
+                            <select aria-label="Project type">
+                                <option value="">Project type</option>
+                                <option value="event-rentals">Bounce house / event rentals</option>
+                                <option value="lawn">Lawn mowing</option>
+                                <option value="landscaping">Landscaping</option>
+                                <option value="snow">Snow removal</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="email" placeholder="Email (optional for PDF)" aria-label="Email">
+                            <button class="btn btn-primary" type="button">Generate Proof</button>
+                        </div>
+                        <div class="form-row form-row-note">
+                            <span>Optional: Email me my Proof PDF + quotes</span>
+                            <a href="portal.html" class="portal-link">Business login →</a>
+                        </div>
+                    </form>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <strong>3</strong>
-                        <span>Industries</span>
+                        <strong>YES / TIGHT / NO</strong>
+                        <span>Explainable Results</span>
                     </div>
                     <div class="stat">
-                        <strong>Fewer</strong>
-                        <span>Support Messages</span>
+                        <strong>Proof Artifact</strong>
+                        <span>Share Link + PDF</span>
                     </div>
                     <div class="stat">
-                        <strong>Higher</strong>
-                        <span>Conversion Rate</span>
+                        <strong>Fit → Quote</strong>
+                        <span>Qualified Leads</span>
                     </div>
                 </div>
-                <p class="social-proof">✅ Used by My Cousin Vinny's Rentals (Rhode Island)</p>
+                <p class="social-proof">Proof first. Lead second. No pivot required.</p>
             </div>
         </div>
     </section>
 
-    <!-- Yard Measurement Tool -->
-    <section id="tool" class="tool-section">
+    <!-- Two Modes -->
+    <section id="modes" class="use-case-content">
         <div class="container">
-            <h2 class="section-title">Enter Your Yard Dimensions</h2>
-            <p class="section-subtitle">We'll show you which inflatables fit perfectly</p>
-            
-            <div class="measurement-tool">
-                <div class="input-card">
-                    <h3>📏 Yard Size</h3>
-                    <div class="input-group">
-                        <label for="yard-length">Length (feet)</label>
-                        <input type="number" id="yard-length" placeholder="e.g., 30" min="10" max="200">
-                    </div>
-                    <div class="input-group">
-                        <label for="yard-width">Width (feet)</label>
-                        <input type="number" id="yard-width" placeholder="e.g., 25" min="10" max="200">
-                    </div>
-                    <button id="find-fit-btn" class="btn btn-primary">Find What Fits</button>
+            <h2 class="section-title">Two Connected Modes</h2>
+            <p class="section-subtitle">Keep the B2B widget story, add a public lead engine powered by the same Proof.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>🧩 Yard Proof Widget (B2B)</h3>
+                    <p>Embed on your website. Customers draw usable space, confirm access constraints, and get a clear YES / TIGHT / NO.</p>
+                    <p><strong>Result:</strong> fewer back-and-forth calls and fewer day-of surprises.</p>
                 </div>
-
-                <div id="results" class="results-area" style="display: none;">
-                    <h3>✅ Perfect Fits for Your Yard</h3>
-                    <div id="results-list" class="results-grid"></div>
+                <div class="feature-box">
+                    <h3>🔎 Yard Proof Answers (B2C)</h3>
+                    <p>Answer high‑intent questions with an interactive tool, then route customers to local pros who subscribe.</p>
+                    <p><strong>Result:</strong> qualified leads with Proof attached.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Showcase -->
-    <section id="products" class="products-section">
+    <!-- Proof Artifact -->
+    <section id="proof" class="use-case-content">
         <div class="container">
-            <h2 class="section-title">Popular Bounce Houses</h2>
-            <p class="section-subtitle">Click any item to see if it fits your yard</p>
-            
-            <div id="products-grid" class="products-grid">
-                <!-- Products loaded dynamically -->
+            <h2 class="section-title">The Proof Artifact</h2>
+            <p class="section-subtitle">The glue between widget and lead engine. Proof comes first; quotes come next.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>✅ Explainable Fit Result</h3>
+                    <p>YES / TIGHT / NO with reason codes and next steps.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📎 Share Link + PDF</h3>
+                    <p>Customers can download or share without submitting contact info.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🧭 Constraints Captured</h3>
+                    <p>Gate width, surface, slope, power, photos, and notes.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🎯 Alternatives Built In</h3>
+                    <p>When it’s tight or no‑fit, we suggest what will work.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- Public Answers / SEO -->
+    <section id="answers" class="use-case-content">
         <div class="container">
-            <h2>Ready to Book?</h2>
-            <p>Found the perfect fit? Contact My Cousin Vinny's Rentals to reserve.</p>
-            <div class="contact-buttons">
-                <a href="tel:4018244994" class="btn btn-primary">📞 Call 401-824-4994</a>
-                <a href="https://www.mycousinvinnysrentals.com/order-by-date/" target="_blank" class="btn btn-secondary">Book Online →</a>
+            <h2 class="section-title">Public Answers That Rank</h2>
+            <p class="section-subtitle">Each page gives a direct answer, quick rules of thumb, and a Proof tool preloaded to the topic.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>🎪 Bounce House Space</h3>
+                    <p>How much room does a bounce house need?</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔌 Bounce House Power</h3>
+                    <p>How much power does a bounce house use?</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🌱 Lawn Mowing Cost</h3>
+                    <p>What does mowing cost on your property?</p>
+                </div>
+                <div class="feature-box">
+                    <h3>❄️ Snow Removal Cost</h3>
+                    <p>How much for your driveway & walkway?</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="use-cases/event-rentals.html" class="btn btn-secondary">See Use Cases →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Engine -->
+    <section id="lead" class="use-case-content">
+        <div class="container">
+            <h2 class="section-title">Proof‑Based Lead Engine</h2>
+            <p class="section-subtitle">Not random leads. Pre‑qualified leads with proof attached.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>📦 What Pros Receive</h3>
+                    <ul class="check-list">
+                        <li>✅ Proof Artifact + measurements</li>
+                        <li>✅ Constraints + photos/notes</li>
+                        <li>✅ Service area fit</li>
+                        <li>✅ Project type preselected</li>
+                        <li>✅ Confidence score</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>🧭 Matching Rules</h3>
+                    <ul class="check-list">
+                        <li>✅ Geography (zip/radius)</li>
+                        <li>✅ Category fit (event/lawn/snow)</li>
+                        <li>✅ Lead terms accepted</li>
+                        <li>✅ Rank by response + speed</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>🚫 No Providers Nearby</h3>
+                    <p>No fake listings. We offer “notify me” or “join the network.”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business" class="use-case-content">
+        <div class="container">
+            <h2 class="section-title">For Businesses</h2>
+            <p class="section-subtitle">Subscribers get the widget + qualified leads with Proof attached.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>🧩 Yard Proof Widget</h3>
+                    <p>Embed the Proof tool on your site. Reduce uncertainty and increase conversions.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📦 Proof‑Based Leads</h3>
+                    <p>Receive leads with measurements, constraints, and a confidence score.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔐 Subscriber Portal</h3>
+                    <p>Manage your listing, service area, and proof intake in a private portal.</p>
+                    <a href="portal.html" class="btn btn-secondary" style="margin-top: 1rem;">Business Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Model -->
+    <section class="use-case-content">
+        <div class="container">
+            <h2 class="section-title">Pricing That Matches the Lead Engine</h2>
+            <p class="section-subtitle">Subscription-first with lead quality controls.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>Starter</h3>
+                    <p>Network listing + Proof‑based leads included each month.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Pro</h3>
+                    <p>Rate Card Builder + instant estimate ranges + priority placement.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Future Add‑On</h3>
+                    <p>Exclusive ZIPs once supply is healthy (avoid churn).</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="pricing.html" class="btn btn-primary">View Pricing →</a>
             </div>
         </div>
     </section>
@@ -108,11 +241,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>Yardproof - Powered by My Cousin Vinny's Rentals</p>
-            <p><a href="https://www.mycousinvinnysrentals.com" target="_blank">Visit Full Website</a></p>
+            <p>&copy; 2026 Yard Proof. Proof before you book.</p>
         </div>
     </footer>
-
-    <script src="js/app.js"></script>
 </body>
 </html>

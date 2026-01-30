@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Login - Yard Proof</title>
+    <meta name="description" content="Subscriber portal for Yard Proof businesses.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .portal-page {
+            min-height: 80vh;
+            display: grid;
+            place-items: center;
+            padding: 4rem 1.5rem;
+            background: var(--light-gray);
+        }
+        .login-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--mist);
+        }
+        .login-card h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .login-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .login-card label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        .login-card input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--mist);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .login-card .help-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.75rem;
+        }
+        .login-card .link-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .login-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="embed-generator.html">Generate Embed</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="portal-page">
+        <div class="login-card">
+            <h1>Business Login</h1>
+            <p>Access your subscriber portal to manage Proofs, leads, and your listing.</p>
+            <form>
+                <label for="email">Work Email</label>
+                <input type="email" id="email" placeholder="you@company.com">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+
+                <button class="btn btn-primary" type="button">Sign In</button>
+            </form>
+            <div class="link-row">
+                <a href="pricing.html">Become a subscriber</a>
+                <a href="mailto:support@yardproof.com">Need help?</a>
+            </div>
+            <p class="help-text">This portal is for subscribing businesses. Consumers can get a Proof for free.</p>
+        </div>
+    </main>
+</body>
+</html>

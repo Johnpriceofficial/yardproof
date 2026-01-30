@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERS Integration Guide | Yard Proof</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .integration-hero {
+            background: linear-gradient(135deg, #2EA4DD 0%, #9DC93B 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .integration-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .integration-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .step-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .string { color: #ce9178; }
+        .code-block .keyword { color: #569cd6; }
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .field-table th,
+        .field-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .field-table th {
+            background: #f3f4f6;
+            font-weight: bold;
+        }
+        .field-table .required {
+            color: #dc2626;
+            font-weight: bold;
+        }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .screenshot {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            background: #f9fafb;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="integration-hero">
+        <h1>🔌 ERS Integration Guide</h1>
+        <p>Connect your Event Rental Systems (ERS) inventory to Yard Proof in minutes. Built specifically for event rental companies using ERS admin portal.</p>
+    </div>
+
+    <div class="container" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+        
+        <!-- Overview -->
+        <section>
+            <h2>What is ERS Integration?</h2>
+            <p>ERS (Event Rental Systems) is the leading software platform for bounce house and party rental companies. If you use the ERS admin portal to manage your inventory, this guide shows you how to connect that data to Yard Proof's draw-to-measure widget.</p>
+            
+            <div class="info-box">
+                <strong>✨ Why Integrate?</strong>
+                <ul>
+                    <li><strong>Automatic catalog sync</strong> – Your ERS items appear in the widget immediately</li>
+                    <li><strong>Accurate dimensions</strong> – Setup area and power requirements auto-populate</li>
+                    <li><strong>Proof validation</strong> – Widget validates space before customers book</li>
+                    <li><strong>Reduced support</strong> – Fewer "will it fit?" calls and cancellations</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 1: Export from ERS -->
+        <div class="step-card">
+            <h3><span class="step-number">1</span>Export Your Items from ERS</h3>
+            
+            <p>First, you'll export your inventory from the ERS admin portal:</p>
+            
+            <ol style="margin-left: 20px;">
+                <li>Log into your ERS admin portal</li>
+                <li>Navigate to <strong>Items</strong> section</li>
+                <li>Click <strong>Export</strong> or <strong>Download CSV</strong></li>
+                <li>Save the file (usually named something like <code>ITEMS.txt</code> or <code>export.csv</code>)</li>
+            </ol>
+
+            <div class="screenshot">
+                <p style="margin: 10px 0; color: #6b7280;">📸 Screenshot: ERS Admin Portal → Items → Export</p>
+                <div style="background: #e5e7eb; padding: 40px; color: #6b7280; border-radius: 4px;">
+                    [Screenshot would show ERS export button location]
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> Make sure your export includes these columns:
+                <ul style="margin: 10px 0;">
+                    <li><code>name</code> or <code>display_name</code></li>
+                    <li><code>setup_area</code> or <code>actual_size</code></li>
+                    <li><code>outlets</code> (power requirements)</li>
+                    <li><code>picture</code> (product image)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 2: Understand the Data Format -->
+        <div class="step-card">
+            <h3><span class="step-number">2</span>Understand the ERS Export Format</h3>
+            
+            <p>Your ERS export contains these key fields that Yard Proof uses:</p>
+
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field Name</th>
+                        <th>Example Value</th>
+                        <th>Used For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="required">*</span> <code>setup_area</code></td>
+                        <td>18′ L × 18′ W × 18′ H</td>
+                        <td>Space validation (required clearance)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="required">*</span> <code>actual_size</code></td>
+                        <td>13′ L × 13′ W × 13′ H</td>
+                        <td>Physical dimensions (footprint)</td>
+                    </tr>
+                    <tr>
+                        <td><code>outlets</code></td>
+                        <td>1 Standard Household Outlet</td>
+                        <td>Power requirement checks</td>
+                    </tr>
+                    <tr>
+                        <td><code>display_name</code></td>
+                        <td>Blue Castle Bounce House</td>
+                        <td>Product name shown to customers</td>
+                    </tr>
+                    <tr>
+                        <td><code>cost</code></td>
+                        <td>200</td>
+                        <td>Rental price display</td>
+                    </tr>
+                    <tr>
+                        <td><code>picture</code></td>
+                        <td>blue-castle-bounce-house.jpg</td>
+                        <td>Product thumbnail</td>
+                    </tr>
+                    <tr>
+                        <td><code>age_group</code></td>
+                        <td>Kids</td>
+                        <td>Filter by target audience</td>
+                    </tr>
+                    <tr>
+                        <td><code>categoryid</code></td>
+                        <td>2680</td>
+                        <td>Group similar items</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>💡 Example Row from ERS Export:</strong>
+                <div class="code-block">
+<span class="comment">// Tab-separated values from your ITEMS.txt export:</span>
+name: Blue Castle Bounce House
+type: Regular
+cost: 200
+setup_area: 18′ L × 18′ W × 18′ H
+actual_size: 13′ L × 13′ W × 13′ H
+outlets: 1 Standard Household Outlet
+age_group: Kids
+picture: blue-castle-bounce-house-rental-in-rhode-island.jpg
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Upload to Yard Proof -->
+        <div class="step-card">
+            <h3><span class="step-number">3</span>Upload to Yard Proof</h3>
+            
+            <p>Now you'll upload your ERS export to Yard Proof:</p>
+
+            <ol style="margin-left: 20px;">
+                <li>Go to <strong><a href="../embed-generator.html">Embed Generator</a></strong></li>
+                <li>In the <strong>"Industry & Items"</strong> section, click <strong>"Upload ERS Export"</strong></li>
+                <li>Select your <code>ITEMS.txt</code> file</li>
+                <li>Preview parsed items to verify accuracy</li>
+                <li>Click <strong>"Import Items"</strong> to add them to your widget catalog</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>✅ What Happens Next:</strong>
+                <ul style="margin: 10px 0;">
+                    <li>Parser extracts dimensions from <code>setup_area</code></li>
+                    <li>Images are linked from your domain</li>
+                    <li>Power requirements become validation rules</li>
+                    <li>Widget auto-configures with your inventory</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 4: Configure Validation Rules -->
+        <div class="step-card">
+            <h3><span class="step-number">4</span>Configure Validation Rules</h3>
+            
+            <p>Yard Proof can automatically validate requirements based on your ERS data:</p>
+
+            <h4>Power Requirements</h4>
+            <div class="code-block">
+<span class="comment">// Automatically parsed from ERS outlets field:</span>
+<span class="keyword">if</span> (item.outlets === <span class="string">"1 Standard Household Outlet"</span>) {
+  widget.requireCheck(<span class="string">"power_within_50ft"</span>);
+  widget.showWarning(<span class="string">"Outlet must be within 50 feet of setup area"</span>);
+}
+            </div>
+
+            <h4>Setup Surface</h4>
+            <div class="code-block">
+<span class="comment">// Based on ERS surface_load_options field:</span>
+<span class="keyword">const</span> surfaces = {
+  grass: { fee: <span class="string">0</span>, preferred: <span class="keyword">true</span> },
+  concrete: { fee: <span class="string">40</span>, note: <span class="string">"Requires sandbag anchoring"</span> },
+  asphalt: { fee: <span class="string">40</span>, note: <span class="string">"Requires sandbag anchoring"</span> }
+};
+            </div>
+
+            <h4>Space Clearance</h4>
+            <div class="code-block">
+<span class="comment">// Uses setup_area dimensions:</span>
+setupArea: <span class="string">"18′ L × 18′ W × 18′ H"</span>  <span class="comment">// ERS field</span>
+<span class="keyword">→</span> requiredClearance: { length: <span class="string">18</span>, width: <span class="string">18</span> }  <span class="comment">// Widget</span>
+            </div>
+        </div>
+
+        <!-- Step 5: Test Integration -->
+        <div class="step-card">
+            <h3><span class="step-number">5</span>Test Your Integration</h3>
+            
+            <p>Before going live, test the widget with a few sample items:</p>
+
+            <ol style="margin-left: 20px;">
+                <li><strong>Pick a small bounce house</strong> (e.g., 13×13) – Should fit most yards</li>
+                <li><strong>Pick a large combo</strong> (e.g., 20×15) – Should require more space</li>
+                <li><strong>Draw different yard sizes</strong> – Verify "Fits" vs "Too Tight" logic</li>
+                <li><strong>Check power warnings</strong> – Should show outlet requirement message</li>
+                <li><strong>Test alternatives</strong> – Widget should suggest similar-sized items</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>🧪 Test Scenarios:</strong>
+                <table style="width: 100%; margin-top: 15px;">
+                    <tr style="background: white;">
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;"><strong>Scenario</strong></td>
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;"><strong>Expected Result</strong></td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">Customer draws 20×20 yard<br>Selects 13×13 bounce house</td>
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">✅ "Fits! Setup area: 18×18"</td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">Customer draws 15×15 yard<br>Selects 13×13 bounce house</td>
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">⚠️ "Tight fit. Consider alternatives."</td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">Customer draws 12×12 yard<br>Selects 13×13 bounce house</td>
+                        <td style="padding: 10px; border: 1px solid #e5e7eb;">❌ "Won't fit. Need 18×18 min."</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Advanced Features -->
+        <section style="margin-top: 40px;">
+            <h2>Advanced Features</h2>
+
+            <div class="step-card">
+                <h3>🔄 Automatic Inventory Sync</h3>
+                <p>Keep your widget updated automatically when ERS inventory changes:</p>
+                <ul>
+                    <li><strong>Zapier Integration</strong> – Trigger widget refresh when ERS items update</li>
+                    <li><strong>Scheduled Sync</strong> – Daily/weekly re-import from ERS export</li>
+                    <li><strong>API Connection</strong> (coming soon) – Real-time inventory sync</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <h3>💰 Dynamic Pricing</h3>
+                <p>Show customers total cost including add-on fees:</p>
+                <div class="code-block">
+<span class="comment">// Example pricing calculation:</span>
+Base rental: $200
++ Sandbag fee (concrete setup): $40
++ Damage waiver (10%): $24
+= Total: $264
+                </div>
+            </div>
+
+            <div class="step-card">
+                <h3>📊 Analytics Integration</h3>
+                <p>Track which items customers validate most:</p>
+                <ul>
+                    <li>Proof count by item</li>
+                    <li>Fit rate % by item</li>
+                    <li>Alternative selections</li>
+                    <li>Drop-off points (where customers exit)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section style="margin-top: 40px;">
+            <h2>Troubleshooting</h2>
+
+            <div class="step-card">
+                <h4>❓ Parser can't read my export file</h4>
+                <p><strong>Solution:</strong> Make sure the file is tab-separated (.txt or .tsv). ERS exports sometimes use special characters – try re-exporting from ERS or contact support.</p>
+            </div>
+
+            <div class="step-card">
+                <h4>❓ Dimensions aren't parsing correctly</h4>
+                <p><strong>Solution:</strong> Check that your ERS items have either <code>setup_area</code> or <code>actual_size</code> filled in. Format should be: <code>18′ L × 18′ W × 18′ H</code></p>
+            </div>
+
+            <div class="step-card">
+                <h4>❓ Images not showing in widget</h4>
+                <p><strong>Solution:</strong> Verify your domain is set correctly in embed generator settings. Images should link to: <code>https://yoursite.com/images/filename.jpg</code></p>
+            </div>
+
+            <div class="step-card">
+                <h4>❓ Widget shows wrong items</h4>
+                <p><strong>Solution:</strong> Check that <code>customer_display</code> field in ERS is set to "Yes" for items you want shown. Hidden or "Display Only" items are excluded.</p>
+            </div>
+        </section>
+
+        <!-- Need Help? -->
+        <section style="margin-top: 40px; text-align: center; padding: 40px 20px; background: #f9fafb; border-radius: 12px;">
+            <h2>Need Help?</h2>
+            <p style="font-size: 1.1rem; color: #6b7280; max-width: 600px; margin: 15px auto;">
+                Our team has experience working with ERS exports and can help you get connected quickly.
+            </p>
+            <div style="margin-top: 25px;">
+                <a href="mailto:support@yardproof.com" class="cta-button" style="display: inline-block; background: var(--primary); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; margin: 0 10px;">
+                    Email Support
+                </a>
+                <a href="tel:+1234567890" class="cta-button" style="display: inline-block; background: var(--secondary); color: var(--dark); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; margin: 0 10px;">
+                    Schedule Setup Call
+                </a>
+            </div>
+            <p style="margin-top: 20px; color: #6b7280;">
+                Or check out the <strong><a href="../use-cases/event-rentals.html">Event Rentals Use Case</a></strong> for more context
+            </p>
+        </section>
+
+    </div>
+
+    <footer style="background: var(--dark); color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <p>&copy; 2025 Yard Proof. Built for event rental companies.</p>
+        <p style="margin-top: 10px;">
+            <a href="../index.html" style="color: white; margin: 0 15px;">Home</a>
+            <a href="../pricing.html" style="color: white; margin: 0 15px;">Pricing</a>
+            <a href="../use-cases/event-rentals.html" style="color: white; margin: 0 15px;">Use Cases</a>
+            <a href="../embed-generator.html" style="color: white; margin: 0 15px;">Embed Generator</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -117,6 +117,80 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
+        .upload-zone {
+            border: 2px dashed #D1D5DB;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background: #F9FAFB;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+        .upload-zone.dragover {
+            border-color: var(--primary);
+            background: #EFF6FF;
+        }
+        .upload-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .pill {
+            background: #EEF2FF;
+            color: #1E3A8A;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .pill.warn {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        .pill.ok {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .preview-table th,
+        .preview-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .preview-table th {
+            background: #F3F4F6;
+        }
+        .status-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .small-btn {
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .small-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+        .small-btn.secondary {
+            background: #E5E7EB;
+            color: #111827;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -166,6 +240,54 @@
                 <label for="itemsUrl">Items Data URL</label>
                 <input type="text" id="itemsUrl" placeholder="https://yoursite.com/products.json" value="">
                 <p class="help-text">JSON endpoint with item dimensions. Or upload ERS export during onboarding.</p>
+            </div>
+            <div class="form-group">
+                <label>Import from ERS (CSV/TSV)</label>
+                <div class="upload-zone" id="ersDropZone">
+                    <div style="font-size: 2rem;">📄</div>
+                    <div style="font-weight: 600; margin-top: 0.5rem;">Drop your ERS Items export here</div>
+                    <div class="help-text">Supports .txt (TSV), .tsv, or .csv from ERS admin portal</div>
+                    <input type="file" id="ersFileInput" accept=".txt,.tsv,.csv" style="display: none;">
+                </div>
+                <div class="upload-meta">
+                    <div>
+                        <label for="imageBaseUrl">Image Base URL (optional)</label>
+                        <input type="text" id="imageBaseUrl" placeholder="https://www.yoursite.com" value="">
+                        <p class="help-text">Used to build image URLs: /images/{filename}</p>
+                    </div>
+                    <div style="min-width: 220px;">
+                        <label>Import Filters</label>
+                        <div class="radio-group" style="flex-direction: column; gap: 0.4rem;">
+                            <label><input type="checkbox" id="filterDisplayOnly" checked> Exclude "Display Only" items</label>
+                            <label><input type="checkbox" id="filterMissingDims" checked> Exclude items missing dimensions</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="ersPreview" class="hidden">
+                    <div class="status-row">
+                        <span class="pill ok" id="ersCount">0 items</span>
+                        <span class="pill" id="ersCategories">0 categories</span>
+                        <span class="pill warn" id="ersMissingDims">0 missing dimensions</span>
+                        <span class="pill warn" id="ersMissingPower">0 missing power</span>
+                    </div>
+                    <table class="preview-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Setup Area</th>
+                                <th>Actual Size</th>
+                                <th>Power</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ersPreviewBody"></tbody>
+                    </table>
+                    <div style="display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap;">
+                        <button class="small-btn primary" type="button" id="applyErsData">Use Parsed Data</button>
+                        <button class="small-btn secondary" type="button" id="downloadErsData">Download JSON</button>
+                        <span class="help-text" id="ersStatusText"></span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -242,6 +364,65 @@
     </footer>
 
     <script>
+        let ersConfig = null;
+        let ersBlobUrl = null;
+
+        const dropZone = document.getElementById('ersDropZone');
+        const fileInput = document.getElementById('ersFileInput');
+        const previewSection = document.getElementById('ersPreview');
+        const previewBody = document.getElementById('ersPreviewBody');
+        const statusText = document.getElementById('ersStatusText');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropZone.classList.remove('dragover');
+            const file = event.dataTransfer.files[0];
+            if (file) {
+                handleErsFile(file);
+            }
+        });
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                handleErsFile(file);
+            }
+        });
+
+        document.getElementById('applyErsData').addEventListener('click', () => {
+            if (!ersConfig) {
+                statusText.textContent = 'No parsed data available.';
+                return;
+            }
+            if (ersBlobUrl) {
+                URL.revokeObjectURL(ersBlobUrl);
+            }
+            const blob = new Blob([JSON.stringify(ersConfig, null, 2)], { type: 'application/json' });
+            ersBlobUrl = URL.createObjectURL(blob);
+            document.getElementById('itemsUrl').value = ersBlobUrl;
+            statusText.textContent = 'Items Data URL set from parsed ERS export.';
+        });
+
+        document.getElementById('downloadErsData').addEventListener('click', () => {
+            if (!ersConfig) {
+                statusText.textContent = 'No parsed data available.';
+                return;
+            }
+            const blob = new Blob([JSON.stringify(ersConfig, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'yardproof-ers-catalog.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            statusText.textContent = 'JSON downloaded.';
+        });
+
         function generateEmbed() {
             const tenantId = document.getElementById('tenantId').value || 'demo-tenant';
             const companyName = document.getElementById('companyName').value || 'Your Company';
@@ -283,6 +464,193 @@
                 const btn = document.querySelector('.copy-btn');
                 btn.textContent = 'Copied!';
                 setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+
+        function handleErsFile(file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const text = event.target.result || '';
+                const tenantId = document.getElementById('tenantId').value || 'tenant-001';
+                const tenantName = document.getElementById('companyName').value || 'Event Rental Company';
+                const imageBaseUrl = document.getElementById('imageBaseUrl').value || '';
+                const filterDisplayOnly = document.getElementById('filterDisplayOnly').checked;
+                const filterMissingDims = document.getElementById('filterMissingDims').checked;
+                ersConfig = parseErsExport(text, { tenantId, tenantName, imageBaseUrl, filterDisplayOnly, filterMissingDims });
+                renderErsPreview(ersConfig);
+                previewSection.classList.remove('hidden');
+                statusText.textContent = 'Parsed ERS export successfully.';
+            };
+            reader.readAsText(file);
+        }
+
+        function detectDelimiter(headerLine) {
+            if (headerLine.includes('\t')) return '\t';
+            if (headerLine.includes(',')) return ',';
+            return '\t';
+        }
+
+        function normalizeHeader(header) {
+            return header.trim().toLowerCase();
+        }
+
+        function parseDimensions(dimensionStr) {
+            if (!dimensionStr) return null;
+            const matches = dimensionStr.match(/(\d+(?:\.\d+)?)/g);
+            if (!matches || matches.length < 2) return null;
+            const length = parseFloat(matches[0]);
+            const width = parseFloat(matches[1]);
+            const height = matches.length > 2 ? parseFloat(matches[2]) : null;
+            return {
+                length_ft: length,
+                width_ft: width,
+                height_ft: height,
+                area_sq_ft: Math.round(length * width * 100) / 100
+            };
+        }
+
+        function parsePower(outletsStr) {
+            if (!outletsStr) return { outlets: 0, voltage: null, note: null, distance_ft: 50 };
+            const outletMatch = outletsStr.match(/(\d+)/);
+            const outlets = outletMatch ? parseInt(outletMatch[1], 10) : 1;
+            const voltageMatch = outletsStr.match(/(\d+)V/);
+            const voltage = voltageMatch ? parseInt(voltageMatch[1], 10) : 110;
+            return { outlets, voltage, note: outletsStr, distance_ft: 50 };
+        }
+
+        function slugify(text) {
+            return (text || '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+        }
+
+        function parseErsExport(text, options) {
+            const lines = text.split(/\r?\n/).filter(Boolean);
+            if (lines.length === 0) return { tenant: {}, statistics: {}, categories: {}, items: [] };
+            const delimiter = detectDelimiter(lines[0]);
+            const headers = lines[0].split(delimiter).map(normalizeHeader);
+            const rows = lines.slice(1).map((line) => {
+                const values = line.split(delimiter);
+                const row = {};
+                headers.forEach((header, idx) => {
+                    row[header] = values[idx] ? values[idx].trim() : '';
+                });
+                return row;
+            });
+
+            const items = [];
+            const categories = {};
+            let missingDims = 0;
+            let missingPower = 0;
+
+            rows.forEach((row) => {
+                const displayName = row.display_name || row.name || '';
+                const name = row.name || displayName || '';
+                const customerDisplay = row.customer_display || 'Yes';
+                if (options.filterDisplayOnly && customerDisplay === 'Display Only') {
+                    return;
+                }
+
+                const setupDims = parseDimensions(row.setup_area || '');
+                const actualDims = parseDimensions(row.actual_size || '');
+                const dimensions = setupDims || actualDims;
+
+                if (!dimensions) {
+                    missingDims += 1;
+                    if (options.filterMissingDims) {
+                        return;
+                    }
+                }
+
+                const power = parsePower(row.outlets || '');
+                if (!row.outlets) {
+                    missingPower += 1;
+                }
+
+                const cost = parseFloat(row.cost || '0') || 0;
+                const picture = row.picture || '';
+                const imageBaseUrl = options.imageBaseUrl ? options.imageBaseUrl.replace(/\/$/, '') : '';
+                const imageUrl = imageBaseUrl && picture ? `${imageBaseUrl}/images/${picture}` : picture;
+
+                const item = {
+                    id: slugify(name),
+                    name: displayName || name,
+                    type: row.type || 'Regular',
+                    cost,
+                    dimensions,
+                    power,
+                    image: imageUrl,
+                    category: row.categoryid || 'uncategorized',
+                    age_group: row.age_group ? row.age_group.toLowerCase() : 'all',
+                    customer_display: customerDisplay !== 'No',
+                    _raw: {
+                        setup_area: row.setup_area || '',
+                        actual_size: row.actual_size || '',
+                        outlets: row.outlets || '',
+                        surface_load_options: row.surface_load_options || ''
+                    }
+                };
+
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+                items.push(item);
+            });
+
+            const totalItems = items.length;
+            const avgCost = totalItems ? items.reduce((sum, item) => sum + (item.cost || 0), 0) / totalItems : 0;
+
+            return {
+                tenant: {
+                    id: options.tenantId,
+                    name: options.tenantName,
+                    total_items: totalItems
+                },
+                statistics: {
+                    total_items: totalItems,
+                    categories: Object.keys(categories).length,
+                    average_cost: Math.round(avgCost * 100) / 100,
+                    has_power_requirements: items.filter((item) => (item.power && item.power.outlets > 0)).length
+                },
+                categories,
+                items,
+                _meta: {
+                    missing_dimensions: missingDims,
+                    missing_power: missingPower
+                }
+            };
+        }
+
+        function renderErsPreview(config) {
+            document.getElementById('ersCount').textContent = `${config.statistics.total_items} items`;
+            document.getElementById('ersCategories').textContent = `${config.statistics.categories} categories`;
+            document.getElementById('ersMissingDims').textContent = `${config._meta.missing_dimensions} missing dimensions`;
+            document.getElementById('ersMissingPower').textContent = `${config._meta.missing_power} missing power`;
+
+            previewBody.innerHTML = '';
+            const sample = config.items.slice(0, 8);
+            if (sample.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="5">No items found. Check your export filters.</td>';
+                previewBody.appendChild(row);
+                return;
+            }
+
+            sample.forEach((item) => {
+                const row = document.createElement('tr');
+                const setupArea = item._raw.setup_area || '—';
+                const actualSize = item._raw.actual_size || '—';
+                const power = item._raw.outlets || '—';
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${setupArea}</td>
+                    <td>${actualSize}</td>
+                    <td>${power}</td>
+                    <td>$${item.cost.toFixed(2)}</td>
+                `;
+                previewBody.appendChild(row);
             });
         }
     </script>
