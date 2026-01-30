@@ -1,0 +1,937 @@
+[
+  {
+    "name": "Bull Dog Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 18.0,
+      "width": 18.0,
+      "height": 20.0,
+      "sq_ft": 324.0
+    },
+    "actual_size": {
+      "length": 13.0,
+      "width": 13.0,
+      "height": 15.0,
+      "sq_ft": 169.0
+    },
+    "id": 1
+  },
+  {
+    "name": "Dazzling Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 2
+  },
+  {
+    "name": "Elmo\u2019s World Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 3
+  },
+  {
+    "name": "Little Mermaid Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": null,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 4
+  },
+  {
+    "name": "Rock Star Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 21.0,
+      "width": 22.0,
+      "height": 21.0,
+      "sq_ft": 462.0
+    },
+    "actual_size": {
+      "length": 16.0,
+      "width": 17.0,
+      "height": 16.0,
+      "sq_ft": 272.0
+    },
+    "id": 5
+  },
+  {
+    "name": "Tinker Bell Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 22.0,
+      "width": 21.0,
+      "height": 21.0,
+      "sq_ft": 462.0
+    },
+    "actual_size": {
+      "length": 17.0,
+      "width": 16.0,
+      "height": 16.0,
+      "sq_ft": 272.0
+    },
+    "id": 6
+  },
+  {
+    "name": "Water Slide",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 40.0,
+      "width": 14.0,
+      "height": 9.0,
+      "sq_ft": 560.0
+    },
+    "actual_size": {
+      "length": 35.0,
+      "width": 9.0,
+      "height": 9.0,
+      "sq_ft": 315.0
+    },
+    "id": 7
+  },
+  {
+    "name": "Water Slide",
+    "category": "water_slide",
+    "setup_area": {
+      "length": 34.0,
+      "width": 34.0,
+      "height": 17.0,
+      "sq_ft": 1156.0
+    },
+    "actual_size": {
+      "length": 29.0,
+      "width": 29.0,
+      "height": 17.0,
+      "sq_ft": 841.0
+    },
+    "id": 8
+  },
+  {
+    "name": "Castle Super Slide Combo",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 18.0,
+      "width": 18.0,
+      "height": 15.0,
+      "sq_ft": 324.0
+    },
+    "actual_size": {
+      "length": 13.0,
+      "width": 13.0,
+      "height": 15.0,
+      "sq_ft": 169.0
+    },
+    "id": 9
+  },
+  {
+    "name": "Disney Princess House Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 19.0,
+      "height": 18.0,
+      "sq_ft": 380.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 14.0,
+      "height": 13.0,
+      "sq_ft": 210.0
+    },
+    "id": 10
+  },
+  {
+    "name": "Justice League Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 21.0,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 11
+  },
+  {
+    "name": "Pink Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 21.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 12
+  },
+  {
+    "name": "Generic Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 13
+  },
+  {
+    "name": "Skid Loader Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 25.0,
+      "width": 19.0,
+      "height": 13.0,
+      "sq_ft": 475.0
+    },
+    "actual_size": {
+      "length": 20.0,
+      "width": 14.0,
+      "height": 13.0,
+      "sq_ft": 280.0
+    },
+    "id": 14
+  },
+  {
+    "name": "SpongeBob SquarePants Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 19.0,
+      "height": 18.0,
+      "sq_ft": 380.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 14.0,
+      "height": 13.0,
+      "sq_ft": 210.0
+    },
+    "id": 15
+  },
+  {
+    "name": "Sports Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 18.0,
+      "width": 18.0,
+      "height": 18.0,
+      "sq_ft": 324.0
+    },
+    "actual_size": {
+      "length": 13.0,
+      "width": 13.0,
+      "height": 13.0,
+      "sq_ft": 169.0
+    },
+    "id": 16
+  },
+  {
+    "name": "Toy Story Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 22.0,
+      "width": 21.0,
+      "height": 18.0,
+      "sq_ft": 462.0
+    },
+    "actual_size": {
+      "length": 17.0,
+      "width": 16.0,
+      "height": 13.0,
+      "sq_ft": 272.0
+    },
+    "id": 17
+  },
+  {
+    "name": "Avengers Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 14.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 14.0,
+      "sq_ft": 182.0
+    },
+    "id": 18
+  },
+  {
+    "name": "Baby Shark Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 19
+  },
+  {
+    "name": "Birthday Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 20
+  },
+  {
+    "name": "Dora Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 21
+  },
+  {
+    "name": "Fortnite Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 22
+  },
+  {
+    "name": "Frozen Banner Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 23
+  },
+  {
+    "name": "Mario Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 24
+  },
+  {
+    "name": "Avengers Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 25
+  },
+  {
+    "name": "Birthday Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 26
+  },
+  {
+    "name": "Dora Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 27
+  },
+  {
+    "name": "Fortnite Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 28
+  },
+  {
+    "name": "Frozen Banner Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 29
+  },
+  {
+    "name": "Velcro Wall Interactive Inflatable Game",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 30.0,
+      "width": 17.0,
+      "height": 17.0,
+      "sq_ft": 510.0
+    },
+    "actual_size": {
+      "length": 25.0,
+      "width": 12.0,
+      "height": 17.0,
+      "sq_ft": 300.0
+    },
+    "id": 30
+  },
+  {
+    "name": "Rent Inflatable Screens for Memorable Outdoor Movie Nights",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 7.0,
+      "width": 7.0,
+      "height": null,
+      "sq_ft": 49.0
+    },
+    "actual_size": {
+      "length": 22.0,
+      "width": 16.5,
+      "height": 30.0,
+      "sq_ft": 363.0
+    },
+    "id": 31
+  },
+  {
+    "name": "Popcorn Machine",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 7.0,
+      "width": 7.0,
+      "height": null,
+      "sq_ft": 49.0
+    },
+    "actual_size": {
+      "length": 22.0,
+      "width": 16.5,
+      "height": 30.0,
+      "sq_ft": 363.0
+    },
+    "id": 32
+  },
+  {
+    "name": "Baby Shark Pink Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 33
+  },
+  {
+    "name": "Football Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 34
+  },
+  {
+    "name": "Dino Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 35
+  },
+  {
+    "name": "Dino Pink Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 19.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 342.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 182.0
+    },
+    "id": 36
+  },
+  {
+    "name": "60\" Table Cover",
+    "category": "other",
+    "setup_area": {
+      "length": 19.0,
+      "width": 19.0,
+      "height": 6.0,
+      "sq_ft": 361.0
+    },
+    "actual_size": {
+      "length": 14.0,
+      "width": 14.0,
+      "height": 6.0,
+      "sq_ft": 196.0
+    },
+    "id": 37
+  },
+  {
+    "name": "Wak A Mole Interactive Inflatable Game",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 36.0,
+      "width": 19.0,
+      "height": 17.0,
+      "sq_ft": 684.0
+    },
+    "actual_size": {
+      "length": 31.0,
+      "width": 14.0,
+      "height": 17.0,
+      "sq_ft": 434.0
+    },
+    "id": 38
+  },
+  {
+    "name": "Exciting Axe Throwing",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 30.0,
+      "width": 22.0,
+      "height": 17.0,
+      "sq_ft": 660.0
+    },
+    "actual_size": {
+      "length": 25.0,
+      "width": 16.0,
+      "height": 6.0,
+      "sq_ft": 400.0
+    },
+    "id": 39
+  },
+  {
+    "name": "Best Places to Rent Thunder Dual Lane Combos in",
+    "category": "combo",
+    "setup_area": {
+      "length": 32.0,
+      "width": 20.0,
+      "height": 12.0,
+      "sq_ft": 640.0
+    },
+    "actual_size": {
+      "length": 27.5,
+      "width": 15.0,
+      "height": 12.0,
+      "sq_ft": 412.5
+    },
+    "id": 40
+  },
+  {
+    "name": "Stars n\u2019 Stripes Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 18.0,
+      "width": 18.0,
+      "height": 15.0,
+      "sq_ft": 324.0
+    },
+    "actual_size": {
+      "length": 13.0,
+      "width": 13.0,
+      "height": 15.0,
+      "sq_ft": 169.0
+    },
+    "id": 41
+  },
+  {
+    "name": "40ft Monster Obstacle Course",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 30.0,
+      "width": 22.0,
+      "height": 16.0,
+      "sq_ft": 660.0
+    },
+    "actual_size": {
+      "length": 25.0,
+      "width": 17.0,
+      "height": 16.0,
+      "sq_ft": 425.0
+    },
+    "id": 42
+  },
+  {
+    "name": "18ft Raging Tides Water Slide",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 37.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 740.0
+    },
+    "actual_size": {
+      "length": 32.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 480.0
+    },
+    "id": 43
+  },
+  {
+    "name": "Mega Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 22.0,
+      "width": 25.0,
+      "height": 17.0,
+      "sq_ft": 550.0
+    },
+    "actual_size": {
+      "length": 17.0,
+      "width": 20.0,
+      "height": 17.0,
+      "sq_ft": 340.0
+    },
+    "id": 44
+  },
+  {
+    "name": "Bouncer Of Monkeys Combo Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 30.0,
+      "width": 22.0,
+      "height": 16.0,
+      "sq_ft": 660.0
+    },
+    "actual_size": {
+      "length": 25.0,
+      "width": 16.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "id": 45
+  },
+  {
+    "name": "Spider Man Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 20.0,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 15.0,
+      "sq_ft": 225.0
+    },
+    "id": 46
+  },
+  {
+    "name": "16ft Spider-Man Obstacle Course",
+    "category": "water_slide",
+    "setup_area": {
+      "length": 31.0,
+      "width": 18.0,
+      "height": 16.0,
+      "sq_ft": 558.0
+    },
+    "actual_size": {
+      "length": 26.0,
+      "width": 13.0,
+      "height": 16.0,
+      "sq_ft": 338.0
+    },
+    "id": 47
+  },
+  {
+    "name": "Happy Birthday Castle Combo",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 25.0,
+      "width": 25.0,
+      "height": 16.0,
+      "sq_ft": 625.0
+    },
+    "actual_size": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "id": 48
+  },
+  {
+    "name": "Avengers Castle Combo (Wet/Dry) Bounce House Combo",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 25.0,
+      "width": 25.0,
+      "height": 16.0,
+      "sq_ft": 625.0
+    },
+    "actual_size": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "id": 49
+  },
+  {
+    "name": "Pirates of the Caribbean Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 19.0,
+      "height": 18.0,
+      "sq_ft": 380.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 14.0,
+      "height": 13.0,
+      "sq_ft": 210.0
+    },
+    "id": 50
+  },
+  {
+    "name": "17ft Dash N' Splash Water Slide",
+    "category": "water_slide",
+    "setup_area": {
+      "length": 33.0,
+      "width": 16.0,
+      "height": 18.0,
+      "sq_ft": 528.0
+    },
+    "actual_size": {
+      "length": 28.0,
+      "width": 11.0,
+      "height": 18.0,
+      "sq_ft": 308.0
+    },
+    "id": 51
+  },
+  {
+    "name": "Ocean Junior Playland",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 18.0,
+      "width": 16.0,
+      "height": 8.0,
+      "sq_ft": 288.0
+    },
+    "actual_size": {
+      "length": 13.0,
+      "width": 11.0,
+      "height": 8.0,
+      "sq_ft": 143.0
+    },
+    "id": 52
+  },
+  {
+    "name": "Unicorn Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 22.0,
+      "width": 21.0,
+      "height": 18.0,
+      "sq_ft": 462.0
+    },
+    "actual_size": {
+      "length": 17.0,
+      "width": 16.0,
+      "height": 16.0,
+      "sq_ft": 272.0
+    },
+    "id": 53
+  },
+  {
+    "name": "Large Disney Princess Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 20.0,
+      "width": 20.0,
+      "height": 16.0,
+      "sq_ft": 400.0
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 54
+  },
+  {
+    "name": "Large Disney Princess Castle Bounce House",
+    "category": "bounce_house",
+    "setup_area": {
+      "length": 25.3,
+      "width": 20.9,
+      "height": 14.5,
+      "sq_ft": 528.77
+    },
+    "actual_size": {
+      "length": 15.0,
+      "width": 15.0,
+      "height": 16.0,
+      "sq_ft": 225.0
+    },
+    "id": 55
+  }
+]

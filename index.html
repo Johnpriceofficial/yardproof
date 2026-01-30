@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yardproof - Bounce House Yard Fit Checker</title>
+    <meta name="description" content="See which bounce houses and inflatables fit in your yard instantly. Enter your yard dimensions and get instant recommendations with 3D visualization.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#tool">Check Fit</a></li>
+                <li><a href="#products">Browse</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Will It Fit in Your Yard?</h2>
+                <p class="hero-subtitle">See which bounce houses, water slides, and inflatables fit perfectly in your space—before you rent.</p>
+                <div class="hero-cta">
+                    <a href="#tool" class="btn btn-primary">Check Your Yard →</a>
+                    <a href="#products" class="btn btn-secondary">Browse Inflatables</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>50+</strong>
+                        <span>Inflatables</span>
+                    </div>
+                    <div class="stat">
+                        <strong>Instant</strong>
+                        <span>Results</span>
+                    </div>
+                    <div class="stat">
+                        <strong>3D</strong>
+                        <span>Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yard Measurement Tool -->
+    <section id="tool" class="tool-section">
+        <div class="container">
+            <h2 class="section-title">Enter Your Yard Dimensions</h2>
+            <p class="section-subtitle">We'll show you which inflatables fit perfectly</p>
+            
+            <div class="measurement-tool">
+                <div class="input-card">
+                    <h3>📏 Yard Size</h3>
+                    <div class="input-group">
+                        <label for="yard-length">Length (feet)</label>
+                        <input type="number" id="yard-length" placeholder="e.g., 30" min="10" max="200">
+                    </div>
+                    <div class="input-group">
+                        <label for="yard-width">Width (feet)</label>
+                        <input type="number" id="yard-width" placeholder="e.g., 25" min="10" max="200">
+                    </div>
+                    <button id="find-fit-btn" class="btn btn-primary">Find What Fits</button>
+                </div>
+
+                <div id="results" class="results-area" style="display: none;">
+                    <h3>✅ Perfect Fits for Your Yard</h3>
+                    <div id="results-list" class="results-grid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Popular Bounce Houses</h2>
+            <p class="section-subtitle">Click any item to see if it fits your yard</p>
+            
+            <div id="products-grid" class="products-grid">
+                <!-- Products loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Ready to Book?</h2>
+            <p>Found the perfect fit? Contact My Cousin Vinny's Rentals to reserve.</p>
+            <div class="contact-buttons">
+                <a href="tel:4018244994" class="btn btn-primary">📞 Call 401-824-4994</a>
+                <a href="https://www.mycousinvinnysrentals.com/order-by-date/" target="_blank" class="btn btn-secondary">Book Online →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Yardproof - Powered by My Cousin Vinny's Rentals</p>
+            <p><a href="https://www.mycousinvinnysrentals.com" target="_blank">Visit Full Website</a></p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
