@@ -311,8 +311,17 @@ function initMap() {
     
     geocoder = new google.maps.Geocoder();
     
-    // Try to auto-detect location on map init
-    requestGeolocation();
+    // Don't auto-request location - let user trigger it
+    // Check if permission was previously granted
+    if (navigator.permissions) {
+        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+            if (result.state === 'granted') {
+                // Permission already granted, silently use location
+                requestGeolocation();
+            }
+            // If 'prompt' or 'denied', wait for user to click button
+        });
+    }
     
     // Add drawing manager for manual yard selection
     const drawingManager = new google.maps.drawing.DrawingManager({
@@ -590,12 +599,12 @@ function requestGeolocation() {
 }
 
 // Update location status message
-function updateLocationStatus(message, type) {
+function updateLocationStatus(message, type, persistent = false) {
     const statusEl = document.getElementById('location-status');
     const statusText = document.getElementById('status-text');
     
     statusEl.style.display = 'block';
-    statusText.textContent = message;
+    statusText.innerHTML = message;
     
     // Color based on type
     if (type === 'success') {
@@ -604,13 +613,16 @@ function updateLocationStatus(message, type) {
     } else if (type === 'error') {
         statusEl.style.background = '#FEE2E2';
         statusEl.style.color = '#991B1B';
+    } else if (type === 'info') {
+        statusEl.style.background = '#DBEAFE';
+        statusEl.style.color = '#1E40AF';
     } else {
         statusEl.style.background = '#FEF3C7';
         statusEl.style.color = '#92400E';
     }
     
-    // Auto-hide after 5 seconds for success
-    if (type === 'success') {
+    // Auto-hide after 5 seconds unless persistent or error
+    if (!persistent && type !== 'error') {
         setTimeout(() => {
             statusEl.style.display = 'none';
         }, 5000);
