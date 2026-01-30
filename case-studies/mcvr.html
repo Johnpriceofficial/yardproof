@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: MCVR - Yard Proof</title>
+    <meta name="description" content="How My Cousin Vinny's Rentals cut support messages by 40% and increased online bookings with Yard Proof.">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .case-study-header {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #2EA4DD, #9DC93B);
+            color: white;
+            text-align: center;
+        }
+        .case-study-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .case-study-content {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .company-info {
+            background: #F9FAFB;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        .company-info h3 {
+            margin-top: 0;
+            color: #2EA4DD;
+        }
+        .quote-box {
+            background: white;
+            padding: 2rem;
+            border-left: 4px solid #9DC93B;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .quote-author {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #6B7280;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .result-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .result-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2EA4DD;
+            margin-bottom: 0.5rem;
+        }
+        .result-label {
+            font-size: 1rem;
+            color: #6B7280;
+        }
+        .implementation-timeline {
+            background: #F9FAFB;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        .timeline-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-date {
+            font-weight: 600;
+            color: #2EA4DD;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#use-cases">Use Cases</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="case-study-header">
+        <h1>My Cousin Vinny's Rentals</h1>
+        <p style="font-size: 1.3rem;">How MCVR eliminated "will it fit?" anxiety and doubled online conversions</p>
+        <div class="case-study-meta">
+            <span>📍 Rhode Island</span>
+            <span>🎪 Event Rentals</span>
+            <span>📅 Feb 2025</span>
+        </div>
+    </header>
+
+    <div class="case-study-content">
+        <div class="company-info">
+            <h3>About MCVR</h3>
+            <p><strong>My Cousin Vinny's Rentals</strong> is a family-owned party rental company serving Rhode Island and southeastern Massachusetts. They specialize in bounce houses, water slides, tents, and party equipment.</p>
+            <ul>
+                <li><strong>Founded:</strong> 2018</li>
+                <li><strong>Team:</strong> 8 staff (3 office, 5 delivery)</li>
+                <li><strong>Inventory:</strong> 45+ bounce houses, 20+ tents, 15+ water slides</li>
+                <li><strong>Peak Season:</strong> May-September (graduation parties, summer events)</li>
+            </ul>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>Before Yard Proof, MCVR's booking funnel had a massive leak. Customers would browse the website, get excited about a bounce house, then hit a wall:</p>
+        
+        <div class="quote-box">
+            "We'd get 30-40 messages per day during peak season, and 80% were variations of 'Will this fit in my yard?' We couldn't keep up. Customers would ghost us waiting for responses, or worse — book with a competitor who answered faster."
+            <div class="quote-author">— Vinny DiMartino, Owner</div>
+        </div>
+
+        <p>The team tried several approaches:</p>
+        <ul>
+            <li>❌ Adding dimension specs to every product page → customers still couldn't visualize it</li>
+            <li>❌ Offering "free site visits" → wasted 15-20 hours per week driving to measure yards</li>
+            <li>❌ "Just book it and we'll figure it out" → 12% day-of cancellation rate when items didn't fit</li>
+        </ul>
+
+        <h2>The Solution</h2>
+        <p>In February 2025, MCVR embedded Yard Proof on their product pages. The widget allowed customers to:</p>
+        <ol>
+            <li>Enter their address (auto-locate on satellite view)</li>
+            <li>Draw their usable yard space (accounting for gates, pools, fences)</li>
+            <li>Select a bounce house and instantly see: ✅ Fits, 🟡 Tight, or ❌ Won't Fit</li>
+            <li>Get alternative recommendations if their first choice was too big</li>
+        </ol>
+
+        <div class="implementation-timeline">
+            <h3>Implementation Timeline</h3>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 1: Setup</div>
+                <p>Uploaded ERS items export. Yard Proof auto-parsed dimensions for 45 bounce houses. Flagged 7 items with missing specs.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 2: Widget Configuration</div>
+                <p>Embedded widget on 15 product pages. Enabled gate width check + power outlet prompt. Set CTA to direct checkout.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 3-7: Soft Launch</div>
+                <p>Tested with live traffic. Customers started generating proofs immediately. First 50 proofs validated accuracy.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Week 2+: Full Rollout</div>
+                <p>Rolled out to all product pages. Added "Check if it fits" CTA buttons. Integrated proof links into confirmation emails.</p>
+            </div>
+        </div>
+
+        <h2>The Results</h2>
+        
+        <div class="results-grid">
+            <div class="result-card">
+                <div class="result-value">↓ 40%</div>
+                <div class="result-label">Support Messages</div>
+            </div>
+            <div class="result-card">
+                <div class="result-value">↑ 23%</div>
+                <div class="result-label">Checkout Click Rate</div>
+            </div>
+            <div class="result-card">
+                <div class="result-value">↓ 80%</div>
+                <div class="result-label">Day-of Cancellations</div>
+            </div>
+            <div class="result-card">
+                <div class="result-value">3.2 min</div>
+                <div class="result-label">Avg Time to Proof</div>
+            </div>
+        </div>
+
+        <h3>Breakdown by Numbers (May-August 2025)</h3>
+        <ul>
+            <li><strong>1,247 proofs generated</strong> (avg 312/month)</li>
+            <li><strong>68% "Fits" results</strong> → direct checkout links</li>
+            <li><strong>22% "Tight" results</strong> → showed rotation tips + similar alternatives</li>
+            <li><strong>10% "Won't Fit" results</strong> → suggested 2-3 smaller alternatives (32% took suggestions)</li>
+            <li><strong>287 fewer support messages</strong> (based on pre/post comparison)</li>
+            <li><strong>$47,000 additional revenue</strong> attributed to improved conversion rate</li>
+        </ul>
+
+        <div class="quote-box">
+            "Yard Proof paid for itself in the first month. We went from drowning in 'will it fit?' messages to customers confidently booking online. Our team now focuses on execution, not endless back-and-forth. Game changer."
+            <div class="quote-author">— Vinny DiMartino, Owner</div>
+        </div>
+
+        <h2>Key Takeaways</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>🚀 Instant Value</h3>
+                <p>Customers love the instant answer. No waiting for email responses or phone callbacks.</p>
+            </div>
+            <div class="feature-box">
+                <h3>📈 Data-Driven Upsells</h3>
+                <p>Alternative recommendations converted 32% of "won't fit" scenarios into bookings.</p>
+            </div>
+            <div class="feature-box">
+                <h3>⏰ Time Savings</h3>
+                <p>Team reclaimed 15+ hours per week previously spent on site visits and measurements.</p>
+            </div>
+            <div class="feature-box">
+                <h3>📉 Risk Reduction</h3>
+                <p>Day-of cancellations dropped 80%. Fewer wasted trips, angry customers, and refunds.</p>
+            </div>
+        </div>
+
+        <div style="background: #FEF3C7; padding: 2rem; border-radius: 8px; margin-top: 3rem;">
+            <h3 style="margin-top: 0;">Ready to see similar results?</h3>
+            <p>Embed Yard Proof on your website in 5 minutes. Start with the free plan.</p>
+            <a href="../embed-generator.html" class="btn btn-primary" style="margin-top: 1rem;">Generate Your Widget</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yardproof. Turn uncertainty into confidence.</p>
+        </div>
+    </footer>
+</body>
+</html>

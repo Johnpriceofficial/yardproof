@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery - Yardproof Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="gallery-uploader.html">Gallery Uploader</a></li>
+                <li><a href="gallery.html">View Gallery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h2>🖼️ Virtual Layout Gallery</h2>
+                <p>All generated bounce house layouts with download options</p>
+            </div>
+
+            <div class="gallery-info">
+                <p><strong>Note:</strong> Gallery items are stored in your browser's local storage. Upload images via the <a href="gallery-uploader.html">Gallery Uploader</a> to add new items.</p>
+            </div>
+
+            <div id="gallery-grid" class="results-grid">
+                <!-- Gallery items loaded dynamically -->
+            </div>
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <h3>📭 No items in gallery yet</h3>
+                <p>Upload bounce house images to get started</p>
+                <a href="gallery-uploader.html" class="btn btn-primary">Go to Uploader</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Widget Generator - Yard Proof</title>
+    <meta name="description" content="Generate your custom Yard Proof widget in 5 minutes. Copy/paste embed code for any website.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .generator-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+        .config-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .config-section h3 {
+            margin-top: 0;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+        }
+        .embed-preview {
+            background: #F9FAFB;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        .code-block {
+            background: #1F2937;
+            color: #E5E7EB;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .copy-btn:hover {
+            background: var(--secondary);
+        }
+        .preview-widget {
+            border: 2px dashed var(--primary);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            background: white;
+            margin-top: 1rem;
+        }
+        .help-text {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin-top: 0.25rem;
+        }
+        .generate-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#use-cases">Use Cases</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="generator-container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1>Embed Widget Generator</h1>
+            <p style="font-size: 1.2rem; color: #6B7280;">Get your custom "Will it fit?" widget in 5 minutes</p>
+        </div>
+
+        <div class="config-section">
+            <h3>1. Account Setup</h3>
+            <div class="form-group">
+                <label for="tenantId">Tenant ID</label>
+                <input type="text" id="tenantId" placeholder="e.g., mcvr-rentals-ri" value="">
+                <p class="help-text">Your unique identifier. Use lowercase letters, numbers, and hyphens only.</p>
+            </div>
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" placeholder="e.g., My Cousin Vinny's Rentals" value="">
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h3>2. Industry & Items</h3>
+            <div class="form-group">
+                <label>Primary Vertical</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="vertical" value="event-rentals" checked> 🎪 Event Rentals</label>
+                    <label><input type="radio" name="vertical" value="landscaping"> 🌱 Landscaping</label>
+                    <label><input type="radio" name="vertical" value="snow-removal"> ❄️ Snow Removal</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="itemsUrl">Items Data URL</label>
+                <input type="text" id="itemsUrl" placeholder="https://yoursite.com/products.json" value="">
+                <p class="help-text">JSON endpoint with item dimensions. Or upload ERS export during onboarding.</p>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h3>3. Theme & Branding</h3>
+            <div class="form-group">
+                <label>Color Theme</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="theme" value="light" checked> Light</label>
+                    <label><input type="radio" name="theme" value="dark"> Dark</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="primaryColor">Primary Color</label>
+                <input type="text" id="primaryColor" placeholder="#2563EB" value="#2563EB">
+            </div>
+            <div class="form-group">
+                <label for="ctaUrl">CTA Target URL</label>
+                <input type="text" id="ctaUrl" placeholder="https://yoursite.com/checkout" value="">
+                <p class="help-text">Where "Book Now" or "Get Quote" button leads after proof is generated.</p>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h3>4. Required Checks</h3>
+            <div class="form-group">
+                <label><input type="checkbox" id="checkGateWidth" checked> Gate Width Check</label>
+                <p class="help-text">Prompt customer to confirm gate width for equipment access.</p>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="checkPower" checked> Power Outlet Check</label>
+                <p class="help-text">Ask if electrical outlet is within 50ft (for inflatables).</p>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="checkObstacles"> Obstacle Checklist</label>
+                <p class="help-text">Mailbox, sprinklers, fire hydrant, etc.</p>
+            </div>
+        </div>
+
+        <button class="generate-btn" onclick="generateEmbed()">Generate Embed Code</button>
+
+        <div class="embed-preview" id="embedOutput" style="display: none;">
+            <h3>Your Embed Code</h3>
+            <p>Copy this snippet and paste it into your website's HTML:</p>
+            <div class="code-block" id="codeBlock">
+                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                <pre id="embedCode"></pre>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Preview</h3>
+            <div class="preview-widget">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏡</div>
+                <h3>Will It Fit in Your Yard?</h3>
+                <p>Draw your space on satellite view. Get instant proof.</p>
+                <button class="btn btn-primary">Start Visual Planner</button>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #FEF3C7; border-radius: 6px;">
+                <strong>✅ Next Steps:</strong>
+                <ol style="margin: 1rem 0 0 1.5rem;">
+                    <li>Paste embed code into your website</li>
+                    <li>Upload your items catalog (or ERS export)</li>
+                    <li>Test widget on staging environment</li>
+                    <li>Go live and track analytics</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Yardproof. Turn uncertainty into confidence.</p>
+        </div>
+    </footer>
+
+    <script>
+        function generateEmbed() {
+            const tenantId = document.getElementById('tenantId').value || 'demo-tenant';
+            const companyName = document.getElementById('companyName').value || 'Your Company';
+            const vertical = document.querySelector('input[name="vertical"]:checked').value;
+            const theme = document.querySelector('input[name="theme"]:checked').value;
+            const primaryColor = document.getElementById('primaryColor').value || '#2563EB';
+            const ctaUrl = document.getElementById('ctaUrl').value || 'https://yoursite.com/checkout';
+            const itemsUrl = document.getElementById('itemsUrl').value || '';
+            
+            const checks = {
+                gateWidth: document.getElementById('checkGateWidth').checked,
+                power: document.getElementById('checkPower').checked,
+                obstacles: document.getElementById('checkObstacles').checked
+            };
+
+            const embedCode = `<!-- Yard Proof Widget -->
+<div id="yardproof-widget" 
+     data-tenant="${tenantId}"
+     data-vertical="${vertical}"
+     data-theme="${theme}"
+     data-primary-color="${primaryColor}"
+     data-cta-url="${ctaUrl}"
+     ${itemsUrl ? `data-items-url="${itemsUrl}"` : ''}
+     ${checks.gateWidth ? 'data-check-gate="true"' : ''}
+     ${checks.power ? 'data-check-power="true"' : ''}
+     ${checks.obstacles ? 'data-check-obstacles="true"' : ''}>
+</div>
+<script src="https://cdn.yardproof.com/widget/v1/embed.js" async><\/script>
+<!-- End Yard Proof Widget -->`;
+
+            document.getElementById('embedCode').textContent = embedCode;
+            document.getElementById('embedOutput').style.display = 'block';
+            document.getElementById('embedOutput').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyCode() {
+            const code = document.getElementById('embedCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
