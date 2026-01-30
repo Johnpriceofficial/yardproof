@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Gallery Uploader - Yardproof</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="gallery-uploader.html">Gallery Uploader</a></li>
+                <li><a href="gallery.html">View Gallery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Upload Section -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h2>📸 Gallery Image Uploader</h2>
+                <p>Upload bounce house images, auto-match products, and generate virtual layouts</p>
+            </div>
+
+            <!-- Upload Zone -->
+            <div class="upload-container">
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h3>Drag & Drop Images Here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" multiple hidden>
+                        <button id="browse-btn" class="btn btn-primary">Choose Files</button>
+                        <p class="upload-hint">PNG or JPG • Max 10MB per file • Multiple files supported</p>
+                    </div>
+                </div>
+
+                <!-- Upload Progress -->
+                <div id="upload-progress" class="upload-progress" style="display: none;">
+                    <div class="progress-header">
+                        <span id="progress-text">Processing...</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Preview Grid -->
+                <div id="preview-grid" class="preview-grid"></div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="results-section" style="display: none;">
+                <h3>✅ Uploaded & Matched</h3>
+                <div id="results-grid" class="results-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Match Confirmation Modal -->
+    <div id="match-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>🎯 Product Match Confirmation</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="match-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="gallery-uploader.js"></script>
+</body>
+</html>
