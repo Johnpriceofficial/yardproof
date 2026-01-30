@@ -5,6 +5,12 @@ let yardWidth = 30;
 let placedItems = [];
 let scale = 10; // pixels per foot
 let nextItemId = 1;
+let currentView = 'grid'; // 'grid' or 'satellite'
+let map = null;
+let yardRectangle = null;
+let mapMarkers = [];
+let geocoder = null;
+let currentLocation = null;
 
 // Load products
 async function loadProducts() {
@@ -272,7 +278,269 @@ function searchItems() {
     displayItemsList(filtered);
 }
 
+// Initialize Google Map
+function initMap() {
+    // Default to Rhode Island (My Cousin Vinny's Rentals area)
+    const defaultLocation = { lat: 41.8240, lng: -71.4128 };
+    
+    const mapContainer = document.getElementById('map-canvas');
+    const mapDiv = document.createElement('div');
+    mapDiv.id = 'map';
+    mapContainer.appendChild(mapDiv);
+    
+    map = new google.maps.Map(mapDiv, {
+        center: defaultLocation,
+        zoom: 18,
+        mapTypeId: 'satellite',
+        tilt: 0,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_LEFT,
+            mapTypeIds: ['satellite', 'hybrid', 'roadmap']
+        },
+        streetViewControl: false,
+        fullscreenControl: true
+    });
+    
+    geocoder = new google.maps.Geocoder();
+    
+    // Add drawing manager for manual yard selection
+    const drawingManager = new google.maps.drawing.DrawingManager({
+        drawingMode: null,
+        drawingControl: true,
+        drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: ['rectangle']
+        },
+        rectangleOptions: {
+            fillColor: '#2EA4DD',
+            fillOpacity: 0.3,
+            strokeWeight: 3,
+            strokeColor: '#2EA4DD',
+            clickable: false,
+            editable: true,
+            zIndex: 1
+        }
+    });
+    
+    drawingManager.setMap(map);
+    
+    // Listen for rectangle complete
+    google.maps.event.addListener(drawingManager, 'rectanglecomplete', function(rectangle) {
+        if (yardRectangle) {
+            yardRectangle.setMap(null);
+        }
+        yardRectangle = rectangle;
+        calculateYardSizeFromRectangle(rectangle);
+    });
+}
+
+// Find location from address
+function findLocation() {
+    const address = document.getElementById('address-input').value;
+    if (!address) {
+        alert('Please enter an address');
+        return;
+    }
+    
+    if (!geocoder) {
+        alert('Maps not loaded yet. Please wait a moment and try again.');
+        return;
+    }
+    
+    geocoder.geocode({ address: address }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+            currentLocation = results[0].geometry.location;
+            map.setCenter(currentLocation);
+            map.setZoom(20);
+            
+            // Add marker
+            clearMapMarkers();
+            const marker = new google.maps.Marker({
+                map: map,
+                position: currentLocation,
+                title: 'Your Location',
+                animation: google.maps.Animation.DROP
+            });
+            mapMarkers.push(marker);
+            
+            // Draw initial yard rectangle
+            drawYardOnMap();
+            
+            // Switch to satellite view
+            switchToSatelliteView();
+        } else {
+            alert('Location not found: ' + status);
+        }
+    });
+}
+
+// Draw yard rectangle on map
+function drawYardOnMap() {
+    if (!map || !currentLocation) return;
+    
+    // Clear existing rectangle
+    if (yardRectangle) {
+        yardRectangle.setMap(null);
+    }
+    
+    // Convert feet to meters (approximate)
+    const metersPerFoot = 0.3048;
+    const lengthMeters = yardLength * metersPerFoot;
+    const widthMeters = yardWidth * metersPerFoot;
+    
+    // Calculate bounds
+    const lat = currentLocation.lat();
+    const lng = currentLocation.lng();
+    
+    // Approximate degree conversion at this latitude
+    const metersPerDegreeLat = 111320;
+    const metersPerDegreeLng = 111320 * Math.cos(lat * Math.PI / 180);
+    
+    const latOffset = lengthMeters / metersPerDegreeLat / 2;
+    const lngOffset = widthMeters / metersPerDegreeLng / 2;
+    
+    const bounds = {
+        north: lat + latOffset,
+        south: lat - latOffset,
+        east: lng + lngOffset,
+        west: lng - lngOffset
+    };
+    
+    yardRectangle = new google.maps.Rectangle({
+        bounds: bounds,
+        map: map,
+        fillColor: '#2EA4DD',
+        fillOpacity: 0.3,
+        strokeWeight: 3,
+        strokeColor: '#2EA4DD',
+        editable: true,
+        draggable: true
+    });
+    
+    // Listen for bounds changes
+    google.maps.event.addListener(yardRectangle, 'bounds_changed', () => {
+        calculateYardSizeFromRectangle(yardRectangle);
+    });
+    
+    // Place bounce house markers
+    updateMapMarkers();
+}
+
+// Calculate yard size from drawn rectangle
+function calculateYardSizeFromRectangle(rectangle) {
+    const bounds = rectangle.getBounds();
+    const ne = bounds.getNorthEast();
+    const sw = bounds.getSouthWest();
+    
+    // Calculate distances
+    const length = google.maps.geometry.spherical.computeDistanceBetween(
+        new google.maps.LatLng(ne.lat(), sw.lng()),
+        new google.maps.LatLng(sw.lat(), sw.lng())
+    );
+    
+    const width = google.maps.geometry.spherical.computeDistanceBetween(
+        new google.maps.LatLng(ne.lat(), ne.lng()),
+        new google.maps.LatLng(ne.lat(), sw.lng())
+    );
+    
+    // Convert meters to feet
+    const lengthFeet = Math.round(length * 3.28084);
+    const widthFeet = Math.round(width * 3.28084);
+    
+    // Update inputs
+    document.getElementById('planner-yard-length').value = lengthFeet;
+    document.getElementById('planner-yard-width').value = widthFeet;
+    
+    yardLength = lengthFeet;
+    yardWidth = widthFeet;
+    
+    updateYardStats();
+}
+
+// Update map markers for placed items
+function updateMapMarkers() {
+    if (currentView !== 'satellite' || !map || !yardRectangle) return;
+    
+    // Clear existing item markers
+    mapMarkers.forEach(marker => {
+        if (marker.title !== 'Your Location') {
+            marker.setMap(null);
+        }
+    });
+    
+    const bounds = yardRectangle.getBounds();
+    const center = bounds.getCenter();
+    
+    placedItems.forEach(item => {
+        // Calculate position relative to yard
+        const xPercent = item.x / (yardLength * scale);
+        const yPercent = item.y / (yardWidth * scale);
+        
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
+        
+        const lat = sw.lat() + (ne.lat() - sw.lat()) * (1 - yPercent);
+        const lng = sw.lng() + (ne.lng() - sw.lng()) * xPercent;
+        
+        const marker = new google.maps.Marker({
+            map: map,
+            position: { lat, lng },
+            title: item.product.name,
+            label: {
+                text: item.product.name.split(' ')[0],
+                color: 'white',
+                fontSize: '12px',
+                fontWeight: 'bold'
+            },
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 15,
+                fillColor: '#2EA4DD',
+                fillOpacity: 0.8,
+                strokeColor: 'white',
+                strokeWeight: 2
+            }
+        });
+        
+        mapMarkers.push(marker);
+    });
+}
+
+// Clear map markers
+function clearMapMarkers() {
+    mapMarkers.forEach(marker => marker.setMap(null));
+    mapMarkers = [];
+}
+
+// Switch between views
+function switchToGridView() {
+    currentView = 'grid';
+    document.getElementById('yard-canvas').style.display = 'block';
+    document.getElementById('map-canvas').style.display = 'none';
+    document.getElementById('grid-view-btn').classList.add('active');
+    document.getElementById('satellite-view-btn').classList.remove('active');
+}
+
+function switchToSatelliteView() {
+    currentView = 'satellite';
+    document.getElementById('yard-canvas').style.display = 'none';
+    document.getElementById('map-canvas').style.display = 'block';
+    document.getElementById('grid-view-btn').classList.remove('active');
+    document.getElementById('satellite-view-btn').classList.add('active');
+    
+    if (map) {
+        google.maps.event.trigger(map, 'resize');
+        if (currentLocation) {
+            map.setCenter(currentLocation);
+        }
+    }
+}
+
 // Event listeners
+window.initMap = initMap;
+
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
     initYard();
@@ -282,8 +550,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('instructions-modal').style.display = 'none';
     });
     
+    // Location controls
+    document.getElementById('find-location-btn').addEventListener('click', findLocation);
+    document.getElementById('address-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') findLocation();
+    });
+    
+    // View toggle
+    document.getElementById('grid-view-btn').addEventListener('click', switchToGridView);
+    document.getElementById('satellite-view-btn').addEventListener('click', switchToSatelliteView);
+    
     // Yard controls
-    document.getElementById('update-yard-btn').addEventListener('click', updateYard);
+    document.getElementById('update-yard-btn').addEventListener('click', () => {
+        updateYard();
+        if (currentView === 'satellite') {
+            drawYardOnMap();
+        }
+    });
     document.getElementById('clear-btn').addEventListener('click', clearAll);
     document.getElementById('share-btn').addEventListener('click', shareLayout);
     
