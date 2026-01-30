@@ -299,11 +299,20 @@ function initMap() {
             position: google.maps.ControlPosition.TOP_LEFT,
             mapTypeIds: ['satellite', 'hybrid', 'roadmap']
         },
-        streetViewControl: false,
-        fullscreenControl: true
+        streetViewControl: true,
+        streetViewControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        fullscreenControl: true,
+        zoomControl: true,
+        scaleControl: true,
+        rotateControl: true
     });
     
     geocoder = new google.maps.Geocoder();
+    
+    // Try to auto-detect location on map init
+    requestGeolocation();
     
     // Add drawing manager for manual yard selection
     const drawingManager = new google.maps.drawing.DrawingManager({
@@ -512,6 +521,100 @@ function updateMapMarkers() {
 function clearMapMarkers() {
     mapMarkers.forEach(marker => marker.setMap(null));
     mapMarkers = [];
+}
+
+// Request geolocation permission and auto-detect location
+function requestGeolocation() {
+    if (!navigator.geolocation) {
+        updateLocationStatus('Geolocation not supported', 'warning');
+        return;
+    }
+    
+    // Request permission and get location
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const location = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            
+            currentLocation = new google.maps.LatLng(location.lat, location.lng);
+            
+            if (map) {
+                map.setCenter(currentLocation);
+                map.setZoom(20);
+                
+                // Add marker
+                clearMapMarkers();
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: currentLocation,
+                    title: 'Your Current Location',
+                    animation: google.maps.Animation.DROP
+                });
+                mapMarkers.push(marker);
+                
+                // Reverse geocode to get address
+                geocoder.geocode({ location: currentLocation }, (results, status) => {
+                    if (status === 'OK' && results[0]) {
+                        document.getElementById('address-input').value = results[0].formatted_address;
+                        updateLocationStatus('📍 Location detected: ' + results[0].formatted_address, 'success');
+                    }
+                });
+                uto-detect-btn').addEventListener('click', requestGeolocation);
+    document.getElementById('a
+                drawYardOnMap();
+            }
+        },
+        (error) => {
+            let message = 'Location access denied';
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    message = '⚠️ Location permission denied. Please enable in browser settings.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = '⚠️ Location unavailable. Please enter address manually.';
+                    break;
+                case error.TIMEOUT:
+                    message = '⚠️ Location request timeout. Please try again.';
+                    break;
+            }
+            updateLocationStatus(message, 'error');
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+    );
+}
+
+// Update location status message
+function updateLocationStatus(message, type) {
+    const statusEl = document.getElementById('location-status');
+    const statusText = document.getElementById('status-text');
+    
+    statusEl.style.display = 'block';
+    statusText.textContent = message;
+    
+    // Color based on type
+    if (type === 'success') {
+        statusEl.style.background = '#D1FAE5';
+        statusEl.style.color = '#065F46';
+    } else if (type === 'error') {
+        statusEl.style.background = '#FEE2E2';
+        statusEl.style.color = '#991B1B';
+    } else {
+        statusEl.style.background = '#FEF3C7';
+        statusEl.style.color = '#92400E';
+    }
+    
+    // Auto-hide after 5 seconds for success
+    if (type === 'success') {
+        setTimeout(() => {
+            statusEl.style.display = 'none';
+        }, 5000);
+    }
 }
 
 // Switch between views

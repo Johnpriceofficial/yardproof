@@ -6,7 +6,7 @@
     <title>Visual Yard Planner - Yardproof</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="planner.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dN5QiVZyiOxpXE&libraries=places,drawing&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dN5QiVZyiOxpXE&libraries=places,drawing,geometry,visualization&callback=initMap" async defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -38,7 +38,14 @@
                     <div class="input-group">
                         <label for="address-input">📍 Enter Your Address</label>
                         <input type="text" id="address-input" placeholder="123 Main St, City, State">
-                        <button id="find-location-btn" class="btn btn-primary" style="margin-top: 8px;">Find My Yard</button>
+                        <div style="display: flex; gap: 8px; margin-top: 8px;">
+                            <button id="find-location-btn" class="btn btn-primary" style="flex: 1;">Find Address</button>
+                            <button id="auto-detect-btn" class="btn btn-secondary" style="flex: 1;">📍 Use My Location</button>
+                        </div>
+                    </div>
+                    
+                    <div id="location-status" style="margin: 1rem 0; padding: 8px; background: #E5F6FD; border-radius: 6px; font-size: 0.85rem; display: none;">
+                        <span id="status-text">📍 Location detected</span>
                     </div>
                     
                     <div class="view-toggle" style="margin: 1rem 0;">
