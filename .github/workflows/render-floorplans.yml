@@ -1,0 +1,83 @@
+name: Render Floorplans
+
+on:
+  push:
+    paths:
+      - "inflatables/**"
+      - "scripts/**"
+      - ".github/workflows/render-floorplans.yml"
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev pkg-config python3-dev
+
+      - name: Install Python dependencies
+        run: |
+          pip install cairosvg
+
+      - name: Render floorplans (SVG)
+        run: |
+          python scripts/render_floorplans.py
+
+      - name: Convert SVG to PNG with high resolution
+        run: |
+          sudo apt-get install -y librsvg2-bin
+          mkdir -p output/floorplans_png
+          for svg in output/floorplans/*.svg; do
+            filename=$(basename "$svg" .svg)
+            rsvg-convert -w 1200 -h 1200 "$svg" -o "output/floorplans_png/${filename}.png"
+            echo "✅ Converted ${filename}.png"
+          done
+
+      - name: Upload SVG artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: floorplans-svg
+          path: output/floorplans/*.svg
+          retention-days: 30
+
+      - name: Upload PNG artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: floorplans-png
+          path: output/floorplans_png/*.png
+          retention-days: 30
+
+      - name: Commit generated images back to repo
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Create output directories if they don't exist
+          mkdir -p output/floorplans
+          mkdir -p output/floorplans_png
+          
+          # Copy PNGs to main floorplans folder for easy access
+          cp output/floorplans_png/*.png output/floorplans/ || true
+          
+          # Add generated files
+          git add output/floorplans/*.svg output/floorplans/*.png
+          
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Auto-generated floorplan images [skip ci]"
+            git push
+          fi

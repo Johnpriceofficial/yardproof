@@ -1,0 +1,52 @@
+{
+  "slug": "exciting-axe-throwing",
+  "label": "Exciting Axe Throwing",
+  "id": 39,
+  "width_ft": 30.0,
+  "height_ft": 22.0,
+  "setup_area_sq_ft": 660.0,
+  "actual_width_ft": 25.0,
+  "actual_height_ft": 16.0,
+  "actual_size_sq_ft": 400.0,
+  "entrance": {
+    "side": "bottom",
+    "label": "Entrance / Exit"
+  },
+  "ramp": {
+    "side": "bottom",
+    "label": "Ramp",
+    "width_ft": 8
+  },
+  "blower_pipes": [
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.35
+    },
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.65
+    }
+  ],
+  "anchors": [
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.88
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.88
+    }
+  ],
+  "category": "bounce_house",
+  "theme": "standard"
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "popcorn-machine",
+  "label": "Popcorn Machine",
+  "id": 32,
+  "width_ft": 7.0,
+  "height_ft": 7.0,
+  "setup_area_sq_ft": 49.0,
+  "actual_width_ft": 22.0,
+  "actual_height_ft": 16.5,
+  "actual_size_sq_ft": 363.0,
+  "entrance": {
+    "side": "bottom",
+    "label": "Entrance / Exit"
+  },
+  "ramp": {
+    "side": "bottom",
+    "label": "Ramp",
+    "width_ft": 8
+  },
+  "blower_pipes": [
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.35
+    },
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.65
+    }
+  ],
+  "anchors": [
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.88
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.88
+    }
+  ],
+  "category": "bounce_house",
+  "theme": "standard"
+}

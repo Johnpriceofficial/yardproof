@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+      <defs>
+        <style>
+          .title { font: bold 32px Arial, sans-serif; fill: #111; }
+          .dim { font: bold 28px Arial, sans-serif; fill: #111; }
+          .label { font: 26px Arial, sans-serif; fill: #fff; }
+          .small { font: 22px Arial, sans-serif; fill: #111; }
+          .tiny { font: 18px Arial, sans-serif; fill: #666; }
+        </style>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#111"/>
+        </marker>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#3b6ea8;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#3b6ea8;stop-opacity:0.7" />
+        </linearGradient>
+      </defs>
+
+      <!-- Background -->
+      <rect width="900" height="900" fill="#f9fafb"/>
+
+      <!-- Title -->
+      <text x="450.0" y="50" text-anchor="middle" class="title">Wak A Mole Interactive Inflatable Game</text>
+      <text x="450.0" y="80" text-anchor="middle" class="tiny">Setup Area Required</text>
+
+      <!-- Main inflatable rectangle with gradient -->
+      <rect x="120" y="120" width="660" height="660" rx="12" fill="url(#grad)" stroke="#111" stroke-width="5"/>
+
+      <!-- Center label -->
+      <text x="450.0" y="430.0" text-anchor="middle" class="label">Jumping Area</text>
+      <text x="450.0" y="465.0" text-anchor="middle" class="label">684 sq ft</text>
+
+      <!-- Top dimension line -->
+      <line x1="120" y1="70" x2="780" y2="70" stroke="#111" stroke-width="4"
+            marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <text x="450.0" y="55" text-anchor="middle" class="dim">36.0 ft</text>
+
+      <!-- Right dimension line -->
+      <line x1="830" y1="120" x2="830" y2="780" stroke="#111" stroke-width="4"
+            marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <text x="865" y="450.0" text-anchor="middle" class="dim" transform="rotate(90 865,450.0)">19.0 ft</text>
+    
+
+      <circle cx="172.8" cy="199.2" r="24" fill="#d62424" stroke="#111" stroke-width="3"/>
+      <circle cx="172.8" cy="199.2" r="12" fill="none" stroke="#fff" stroke-width="2.5"/>
+        
+
+      <circle cx="727.2" cy="199.2" r="24" fill="#d62424" stroke="#111" stroke-width="3"/>
+      <circle cx="727.2" cy="199.2" r="12" fill="none" stroke="#fff" stroke-width="2.5"/>
+        
+
+      <circle cx="172.8" cy="700.8" r="24" fill="#d62424" stroke="#111" stroke-width="3"/>
+      <circle cx="172.8" cy="700.8" r="12" fill="none" stroke="#fff" stroke-width="2.5"/>
+        
+
+      <circle cx="727.2" cy="700.8" r="24" fill="#d62424" stroke="#111" stroke-width="3"/>
+      <circle cx="727.2" cy="700.8" r="12" fill="none" stroke="#fff" stroke-width="2.5"/>
+        
+<rect x="331.0" y="98" width="40" height="40" rx="4" fill="#7aa7d8" stroke="#111" stroke-width="3"/>
+<circle cx="351.0" cy="118" r="8" fill="#333"/>
+<rect x="529.0" y="98" width="40" height="40" rx="4" fill="#7aa7d8" stroke="#111" stroke-width="3"/>
+<circle cx="549.0" cy="118" r="8" fill="#333"/>
+<text x="450.0" y="90" text-anchor="middle" class="small">Blower Connection</text>
+
+      <rect x="360.0" y="780" width="180" height="70" rx="6" fill="#7aa7d8" stroke="#111" stroke-width="3"/>
+      <text x="450.0" y="825" text-anchor="middle" class="small">Ramp</text>
+        
+<text x="450.0" y="755" text-anchor="middle" class="label">Entrance / Exit</text>
+
+      <text x="450.0" y="870" text-anchor="middle" class="tiny">🔴 Anchor Points  ⚡ Requires continuous blower power</text>
+    
+</svg>

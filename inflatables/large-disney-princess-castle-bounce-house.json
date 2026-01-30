@@ -1,0 +1,52 @@
+{
+  "slug": "large-disney-princess-castle-bounce-house",
+  "label": "Large Disney Princess Castle Bounce House",
+  "id": 55,
+  "width_ft": 25.3,
+  "height_ft": 20.9,
+  "setup_area_sq_ft": 528.77,
+  "actual_width_ft": 15.0,
+  "actual_height_ft": 15.0,
+  "actual_size_sq_ft": 225.0,
+  "entrance": {
+    "side": "bottom",
+    "label": "Entrance / Exit"
+  },
+  "ramp": {
+    "side": "bottom",
+    "label": "Ramp",
+    "width_ft": 8
+  },
+  "blower_pipes": [
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.35
+    },
+    {
+      "side": "top",
+      "label": "Blower Pipe",
+      "x_pct": 0.65
+    }
+  ],
+  "anchors": [
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.12
+    },
+    {
+      "x_pct": 0.08,
+      "y_pct": 0.88
+    },
+    {
+      "x_pct": 0.92,
+      "y_pct": 0.88
+    }
+  ],
+  "category": "bounce_house",
+  "theme": "standard"
+}
