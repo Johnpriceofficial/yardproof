@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Yard Planner - Yardproof</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="planner.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🏡 Yardproof</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#tool">Check Fit</a></li>
+                <li><a href="planner.html">Visual Planner</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Planner Section -->
+    <section class="planner-section">
+        <div class="planner-container">
+            <!-- Sidebar -->
+            <aside class="planner-sidebar">
+                <div class="sidebar-header">
+                    <h2>📐 Your Yard</h2>
+                </div>
+                
+                <div class="yard-setup">
+                    <h3>1. Set Yard Size</h3>
+                    <div class="input-group">
+                        <label for="planner-yard-length">Length (feet)</label>
+                        <input type="number" id="planner-yard-length" value="40" min="10" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="planner-yard-width">Width (feet)</label>
+                        <input type="number" id="planner-yard-width" value="30" min="10" max="100">
+                    </div>
+                    <button id="update-yard-btn" class="btn btn-primary">Update Yard</button>
+                </div>
+
+                <div class="items-panel">
+                    <h3>2. Add Inflatables</h3>
+                    <div class="search-box">
+                        <input type="text" id="item-search" placeholder="Search bounce houses...">
+                    </div>
+                    <div id="items-list" class="items-list">
+                        <!-- Items loaded dynamically -->
+                    </div>
+                </div>
+
+                <div class="yard-stats">
+                    <h3>Yard Stats</h3>
+                    <div class="stat-item">
+                        <span>Yard Size:</span>
+                        <strong id="stat-yard-size">1,200 sq ft</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Items Placed:</span>
+                        <strong id="stat-items-count">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Space Used:</span>
+                        <strong id="stat-space-used">0%</strong>
+                    </div>
+                </div>
+
+                <div class="planner-actions">
+                    <button id="clear-btn" class="btn btn-secondary">Clear All</button>
+                    <button id="share-btn" class="btn btn-primary">Share Layout</button>
+                </div>
+            </aside>
+
+            <!-- Canvas Area -->
+            <main class="planner-canvas">
+                <div class="canvas-header">
+                    <h2>Your Yard Layout</h2>
+                    <div class="canvas-tools">
+                        <button id="zoom-in" class="tool-btn">🔍+</button>
+                        <button id="zoom-out" class="tool-btn">🔍-</button>
+                        <button id="reset-view" class="tool-btn">↺</button>
+                    </div>
+                </div>
+                
+                <div class="canvas-wrapper">
+                    <div id="yard-canvas" class="yard-canvas">
+                        <div id="yard-grid" class="yard-grid">
+                            <!-- Yard grid background -->
+                        </div>
+                        <div id="items-container" class="items-container">
+                            <!-- Draggable items placed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #E5F6FD;"></div>
+                        <span>Setup Area (required space)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #2EA4DD;"></div>
+                        <span>Actual Inflatable Size</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Instructions Modal -->
+    <div id="instructions-modal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h2>🎯 How to Use the Visual Planner</h2>
+            <ol class="instructions-list">
+                <li><strong>Set your yard size</strong> using the inputs on the left</li>
+                <li><strong>Browse bounce houses</strong> in the sidebar</li>
+                <li><strong>Click an item</strong> to add it to your yard</li>
+                <li><strong>Drag items</strong> to arrange them</li>
+                <li><strong>Click an item</strong> on the canvas to remove it</li>
+                <li><strong>Use zoom controls</strong> to get a better view</li>
+            </ol>
+            <button id="close-instructions" class="btn btn-primary">Got It!</button>
+        </div>
+    </div>
+
+    <script src="js/planner.js"></script>
+</body>
+</html>
